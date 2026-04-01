@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eduard Camilo Sánchez García - Ingeniero de Sistemas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ─── Reset & Base ───────────────────────────── */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #060c1a;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* ─── Header ─────────────────────────────────── */
+        header {
+            text-align: center;
+            padding: 80px 20px 64px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 70% 55% at 50% 0%, rgba(99, 102, 241, 0.13) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .profile-section {
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-image-container {
+            width: 156px;
+            height: 156px;
+            margin: 0 auto 28px;
+            border-radius: 50%;
+            border: 2px solid rgba(99, 102, 241, 0.5);
+            box-shadow: 0 0 0 6px rgba(99, 102, 241, 0.07), 0 20px 48px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            background: #0d1726;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(1.03) contrast(1.03);
+            object-position: center;
+        }
+
+        h1 {
+            font-size: 2.6em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #a5b4fc 0%, #818cf8 50%, #c4b5fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 1em;
+            color: #64748b;
+            font-weight: 400;
+            margin-bottom: 28px;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 7px 16px;
+            background: rgba(99, 102, 241, 0.06);
+            border: 1px solid rgba(99, 102, 241, 0.18);
+            border-radius: 6px;
+            font-size: 0.88em;
+            color: #94a3b8;
+            transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(99, 102, 241, 0.12);
+            border-color: rgba(99, 102, 241, 0.38);
+            color: #e2e8f0;
+        }
+
+        .linkedin-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 26px;
+            background: #6366f1;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-top: 22px;
+            transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+        }
+
+        .linkedin-btn:hover {
+            background: #4f46e5;
+            box-shadow: 0 6px 22px rgba(99, 102, 241, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* ─── Sections ────────────────────────────────── */
+        .section {
+            margin: 28px 0;
+            padding: 32px 36px;
+            background: #0d1726;
+            border-radius: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            transition: border-color 0.2s ease;
+        }
+
+        .section:hover {
+            border-color: rgba(99, 102, 241, 0.22);
+        }
+
+        .section-title {
+            font-size: 0.75em;
+            font-weight: 600;
+            color: #6366f1;
+            margin-bottom: 22px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.12);
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* ─── Skills Grid ─────────────────────────────── */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .skill-item {
+            padding: 6px 14px;
+            background: rgba(99, 102, 241, 0.07);
+            border: 1px solid rgba(99, 102, 241, 0.18);
+            border-radius: 5px;
+            font-size: 0.88em;
+            font-weight: 500;
+            color: #a5b4fc;
+            transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+            cursor: default;
+        }
+
+        .skill-item:hover {
+            background: rgba(99, 102, 241, 0.16);
+            border-color: rgba(99, 102, 241, 0.45);
+            color: #e2e8f0;
+            transform: translateY(-2px);
+        }
+
+        /* ─── Experience ──────────────────────────────── */
+        .experience-item {
+            padding: 18px 0 18px 20px;
+            margin-bottom: 12px;
+            border-left: 2px solid rgba(99, 102, 241, 0.4);
+            transition: border-color 0.2s ease;
+        }
+
+        .experience-item:hover {
+            border-color: #6366f1;
+        }
+
+        .experience-title {
+            font-size: 1.05em;
+            color: #e2e8f0;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .experience-company {
+            color: #6366f1;
+            font-weight: 500;
+            font-size: 0.92em;
+            margin-bottom: 4px;
+        }
+
+        /* ─── Certifications ──────────────────────────── */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 18px;
+            margin-top: 8px;
+        }
+
+        .cert-card {
+            background: #111d35;
+            border: 1px solid rgba(99, 102, 241, 0.12);
+            border-radius: 10px;
+            padding: 18px;
+            transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+
+        .cert-card:hover {
+            border-color: rgba(99, 102, 241, 0.38);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .cert-image-placeholder {
+            width: 100%;
+            height: 175px;
+            background: #0d1726;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+            overflow: hidden;
+            color: #475569;
+            font-size: 13px;
+        }
+
+        .cert-image-placeholder img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .cert-title {
+            color: #e2e8f0;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 0.9em;
+            line-height: 1.45;
+        }
+
+        .cert-issuer {
+            color: #6366f1;
+            font-size: 0.82em;
+        }
+
+        /* ─── Education ───────────────────────────────── */
+        .education-item {
+            padding: 18px 20px;
+            background: rgba(99, 102, 241, 0.04);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            border-radius: 10px;
+            margin-bottom: 14px;
+            transition: border-color 0.2s ease;
+        }
+
+        .education-item:hover {
+            border-color: rgba(99, 102, 241, 0.28);
+        }
+
+        .education-degree {
+            font-size: 1.05em;
+            color: #e2e8f0;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .education-institution {
+            color: #6366f1;
+            font-weight: 500;
+            font-size: 0.92em;
+            margin-bottom: 3px;
+        }
+
+        /* ─── View Cert Button ────────────────────────── */
+        .view-cert-btn {
+            margin-top: 12px;
+            padding: 8px 16px;
+            background: rgba(99, 102, 241, 0.08);
+            color: #818cf8;
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+            font-size: 0.83em;
+            width: 100%;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .view-cert-btn:hover {
+            background: rgba(99, 102, 241, 0.18);
+            border-color: #6366f1;
+            color: #e2e8f0;
+        }
+
+        /* ─── Footer ──────────────────────────────────── */
+        footer {
+            text-align: center;
+            padding: 36px 20px;
+            margin-top: 36px;
+            border-top: 1px solid rgba(99, 102, 241, 0.1);
+            color: #334155;
+            font-size: 0.88em;
+        }
+
+        /* ─── Modal ───────────────────────────────────── */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(4, 7, 18, 0.94);
+            animation: fadeIn 0.2s ease;
+        }
+
+        .modal-content {
+            position: relative;
+            background: #0d1726;
+            margin: 1% auto;
+            padding: 20px;
+            border: 1px solid rgba(99, 102, 241, 0.28);
+            border-radius: 12px;
+            width: 95%;
+            max-width: 1600px;
+            height: 95vh;
+            box-shadow: 0 0 48px rgba(99, 102, 241, 0.12);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .close-modal {
+            color: #475569;
+            float: right;
+            font-size: 30px;
+            font-weight: 300;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            line-height: 26px;
+        }
+
+        .close-modal:hover {
+            color: #e2e8f0;
+        }
+
+        #modalTitle {
+            font-size: 1.1em;
+            color: #818cf8;
+        }
+
+        .pdf-protection-overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(180deg, rgba(13, 23, 38, 0.95) 0%, transparent 100%);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .cert-image-placeholder, #modalPdf {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        /* ─── Animations ──────────────────────────────── */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(16px);
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section:nth-child(1) { animation-delay: 0.04s; }
+        .section:nth-child(2) { animation-delay: 0.08s; }
+        .section:nth-child(3) { animation-delay: 0.12s; }
+        .section:nth-child(4) { animation-delay: 0.16s; }
+        .section:nth-child(5) { animation-delay: 0.20s; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ─── Responsive ──────────────────────────────── */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.9em; }
+            .subtitle { font-size: 0.9em; }
+            .contact-info { flex-direction: column; align-items: center; }
+            .certifications-grid { grid-template-columns: 1fr; }
+            .section { padding: 22px 20px; }
+            .modal-content { width: 98%; padding: 14px; margin: 1% auto; height: 96vh; }
+            #modalTitle { font-size: 0.95em; }
+            .close-modal { font-size: 26px; }
+        }
+
+        /* ─── Custom Cursor ───────────────────────────── */
+        #cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 1.5px solid rgba(99, 102, 241, 0.65);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: width 0.12s ease, height 0.12s ease, border-color 0.12s ease;
+            transform: translate(-50%, -50%);
+        }
+        #cursor.expanded {
+            width: 34px;
+            height: 34px;
+            border-color: #818cf8;
+        }
+        #cursor-dot {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #6366f1;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transition: left 0.05s ease, top 0.05s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        /* ─── Scroll Progress Bar ─────────────────────── */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: linear-gradient(90deg, #6366f1, #a78bfa);
+            z-index: 10001;
+            transition: width 0.1s ease;
+        }
+
+        /* ─── WhatsApp Button ─────────────────────────── */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 52px;
+            height: 52px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.28);
+            z-index: 1000;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            animation: float 3.5s ease-in-out infinite;
+        }
+        .whatsapp-float:hover {
+            box-shadow: 0 6px 24px rgba(37, 211, 102, 0.42);
+        }
+        .whatsapp-tooltip {
+            position: fixed;
+            bottom: 90px;
+            right: 28px;
+            background: #0d1726;
+            color: #cbd5e1;
+            border: 1px solid rgba(99, 102, 241, 0.18);
+            padding: 7px 13px;
+            border-radius: 7px;
+            font-size: 12px;
+            font-weight: 500;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 999;
+            transition: opacity 0.2s ease, bottom 0.2s ease;
+            white-space: nowrap;
+        }
+
+        /* ─── Stats Cards ─────────────────────────────── */
+        .stat-card {
+            text-align: center;
+            padding: 26px 18px;
+            background: rgba(99, 102, 241, 0.04);
+            border-radius: 10px;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            transition: border-color 0.2s ease;
+        }
+        .stat-card:hover {
+            border-color: rgba(99, 102, 241, 0.26);
+        }
+        .stat-number {
+            font-size: 2.6em;
+            color: #818cf8;
+            font-weight: 700;
+            line-height: 1;
+        }
+        .stat-label {
+            color: #475569;
+            margin-top: 8px;
+            font-size: 0.85em;
+        }
+
+        /* ─── Keyframe Animations ─────────────────────── */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-7px); }
+        }
+        @keyframes skillPop {
+            0% { transform: scale(0.85); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile-section">
+                <div class="profile-image-container">
+                    <img src="perfil.png" alt="Eduard Camilo Sánchez García" style="filter: brightness(1.05) contrast(1.05); object-position: center;">
+                </div>
+                <h1>Eduard Camilo Sánchez García</h1>
+                <p class="subtitle">Ingeniero de Sistemas | Desarrollador Full Stack</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="daa9bbb4b9b2bfa0bfbeafbba8beece29abdb7bbb3b6f4b9b5b7">[email&#160;protected]</a></span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <span>Colombia → Puerto Rico</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>🎓</span>
+                        <span>Graduado 2025</span>
+                    </div>
+                </div>
+
+                <a href="https://www.linkedin.com/in/eduard-camilo-sanchez-garcia-651405335/" target="_blank" class="linkedin-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                    Conecta conmigo en LinkedIn
+                </a>
+            </div>
+        </header>
+
+        <!-- About Section -->
+        <section class="section fade-in">
+            <h2 class="section-title">Sobre Mí</h2>
+            <p style="font-size: 1.1em; line-height: 1.8;">
+                Ingeniero de Sistemas graduado en 2025, especializado en desarrollo full stack. Actualmente trabajo desarrollando soluciones tecnológicas para Puerto Rico desde Colombia. Apasionado por la tecnología, la seguridad de la información y el aprendizaje continuo de nuevas herramientas y lenguajes de programación.
+            </p>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="section fade-in">
+            <h2 class="section-title">Habilidades Técnicas</h2>
+            <div class="skills-grid">
+                <div class="skill-item">☕ Java</div>
+                <div class="skill-item">📜 JavaScript</div>
+                <div class="skill-item">🐍 Python</div>
+                <div class="skill-item">🐘 PHP</div>
+                <div class="skill-item">🎨 Laravel</div>
+                <div class="skill-item">📄 WordPress</div>
+                <div class="skill-item">🔄 En aprendizaje continuo...</div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="section fade-in">
+            <h2 class="section-title">Estadísticas</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-top: 30px;">
+                <div class="stat-card">
+                    <div class="stat-number counter" data-target="5">0</div>
+                    <div class="stat-label">Lenguajes</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number counter" data-target="3">0</div>
+                    <div class="stat-label">Certificaciones ISO</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number counter" data-target="2025">0</div>
+                    <div class="stat-label">Año de Graduación</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="section fade-in">
+            <h2 class="section-title">Experiencia Profesional</h2>
+            <div class="experience-item">
+                <h3 class="experience-title">Desarrollador Full Stack</h3>
+                <p class="experience-company">Empresa de Desarrollo - Puerto Rico (Remoto)</p>
+                <p style="color: #64748b; margin-top: 10px;">2025 - Presente</p>
+                <p style="margin-top: 15px;">
+                    Desarrollo de soluciones tecnológicas utilizando múltiples lenguajes de programación (Java, JavaScript, Python, PHP, Laravel, WordPress). Trabajo remoto desde Colombia para cliente en Puerto Rico, enfocado en crear aplicaciones web robustas y escalables.
+                </p>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="section fade-in">
+            <h2 class="section-title">Educación</h2>
+            <div class="education-item">
+                <h3 class="education-degree">Ingeniería de Sistemas</h3>
+                <p class="education-institution">Fundación Universitaria Los Libertadores</p>
+                <p style="color: #64748b; margin-top: 5px;">Graduado 2025</p>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section class="section fade-in">
+            <h2 class="section-title">Certificaciones</h2>
+            <p style="margin-bottom: 20px; color: rgba(255,255,255,0.7);">
+                💡 <strong>Certificaciones:</strong> Cuento con formación especializada en estándares internacionales de gestión y 
+                auditoría, con certificaciones emitidas por el American Council of Certification, Inspections and Training y 
+                desarrolladas en conjunto con Grupo Élite Organizacional. Estas acreditaciones fortalecen mis competencias en 
+                seguridad de la información, auditoría de sistemas de gestión y uso responsable de IA dentro de entornos organizacionales.
+            </p>
+            <div class="certifications-grid">
+                <div class="cert-card" onclick="openCertificateModal('certificado1.pdf', 'ISO 27001:2022 - IA')">
+                    <div class="cert-image-placeholder">
+                        <!-- Opción 1: Si usas PDF, guárdalo como "certificado1.pdf" -->
+                        <embed src="certificado1.pdf" type="application/pdf" width="100%" height="100%" style="border: none; border-radius: 8px;">
+                        <!-- Opción 2: Si prefieres usar imagen JPG/PNG, usa esto y comenta el embed de arriba -->
+                        <!-- <img src="certificado1.jpg" alt="Certificado ISO 27001 IA" style="width: 100%; height: 100%; object-fit: contain;"> -->
+                    </div>
+                    <h3 class="cert-title">ISO 27001:2022 - Uso de Herramientas de IA en Sistemas de Gestión de Seguridad de la Información</h3>
+                    <p class="cert-issuer">American Council of Certification, Inspections and Training</p>
+                    <p style="color: #475569; margin-top: 10px; font-size: 0.9em;">Curso realizado en Grupo Élite Organizacional S.A.S</p>
+                    <button class="view-cert-btn" onclick="event.stopPropagation(); openCertificateModal('certificado1.pdf', 'ISO 27001:2022 - IA')">
+                        👁️ Ver Certificado Completo
+                    </button>
+                </div>
+
+                <div class="cert-card" onclick="openCertificateModal('certificado2.pdf', 'ISO 19011:2018')">
+                    <div class="cert-image-placeholder">
+                        <embed src="certificado2.pdf" type="application/pdf" width="100%" height="100%" style="border: none; border-radius: 8px;">
+                        <!-- <img src="certificado2.jpg" alt="Certificado ISO 19011"> -->
+                    </div>
+                    <h3 class="cert-title">ISO 19011:2018 - Directrices para Auditar Sistemas de Gestión</h3>
+                    <p class="cert-issuer">American Council of Certification, Inspections and Training</p>
+                    <p style="color: #475569; margin-top: 10px; font-size: 0.9em;">Curso realizado en Grupo Élite Organizacional S.A.S</p>
+                    <button class="view-cert-btn" onclick="event.stopPropagation(); openCertificateModal('certificado2.pdf', 'ISO 19011:2018')">
+                        👁️ Ver Certificado Completo
+                    </button>
+                </div>
+
+                <div class="cert-card" onclick="openCertificateModal('certificado3.pdf', 'ISO 27001:2022')">
+                    <div class="cert-image-placeholder">
+                        <embed src="certificado3.pdf" type="application/pdf" width="100%" height="100%" style="border: none; border-radius: 8px;">
+                        <!-- <img src="certificado3.jpg" alt="Certificado ISO 27001"> -->
+                    </div>
+                    <h3 class="cert-title">ISO 27001:2022 - Sistemas de Gestión de la Seguridad de la Información</h3>
+                    <p class="cert-issuer">American Council of Certification, Inspections and Training</p>
+                    <p style="color: #475569; margin-top: 10px; font-size: 0.9em;">Curso realizado en Grupo Élite Organizacional S.A.S</p>
+                    <button class="view-cert-btn" onclick="event.stopPropagation(); openCertificateModal('certificado3.pdf', 'ISO 27001:2022')">
+                        👁️ Ver Certificado Completo
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal para ver certificados en pantalla completa -->
+        <div id="certificateModal" class="modal" onclick="closeCertificateModal()">
+            <div class="modal-content" onclick="event.stopPropagation()">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h3 id="modalTitle" style="color: #00ff80; margin: 0;"></h3>
+                    <span class="close-modal" onclick="closeCertificateModal()">&times;</span>
+                </div>
+                <div style="position: relative; flex: 1; min-height: 0;">
+                    <iframe id="modalPdf" width="100%" height="100%" style="border: none; border-radius: 10px;"></iframe>
+                    <!-- Capa de protección sobre la barra de herramientas del PDF -->
+                    <div class="pdf-protection-overlay"></div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2025 Eduard Camilo Sánchez García - Todos los derechos reservados</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">Diseñado con pasión por la tecnología 💚💛</p>
+        </footer>
+    </div>
+
+    <!-- Custom cursor -->
+    <div id="cursor"></div>
+    <div id="cursor-dot"></div>
+
+    <!-- Scroll progress bar -->
+    <div id="scroll-progress"></div>
+
+    <!-- WhatsApp floating button -->
+    <a href="https://wa.me/573123915395?text=Hola%20Eduard,%20vi%20tu%20CV%20y%20me%20gustar%C3%ADa%20contactarte" target="_blank" class="whatsapp-float" id="whatsapp-btn">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" style="color: #000;">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+    </a>
+    <div class="whatsapp-tooltip" id="whatsapp-tooltip">¡Escríbeme por WhatsApp!</div>
+
+    <!-- Canvas for particle effects -->
+    <canvas id="particles-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></canvas>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // ========================================
+        // PARTICLE SYSTEM
+        // ========================================
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.color = Math.random() > 0.5 ? 'rgba(99, 102, 241, 0.45)' : 'rgba(167, 139, 250, 0.45)';
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        const particles = [];
+        for (let i = 0; i < 50; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+
+            // Draw connections — avoid slice() by using index comparison
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 100) {
+                        ctx.strokeStyle = `rgba(99, 102, 241, ${0.15 - distance / 700})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            requestAnimationFrame(animateParticles);
+        }
+
+        animateParticles();
+
+        // ========================================
+        // TYPING ANIMATION
+        // ========================================
+        const subtitle = document.querySelector('.subtitle');
+        const subtitleText = subtitle.textContent;
+        subtitle.textContent = '';
+        let charIndex = 0;
+
+        function typeText() {
+            if (charIndex < subtitleText.length) {
+                subtitle.textContent += subtitleText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeText, 100);
+            }
+        }
+
+        setTimeout(typeText, 500);
+
+        // ========================================
+        // SMOOTH SCROLL ANIMATIONS
+        // ========================================
+        const sections = document.querySelectorAll('.fade-in');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => observer.observe(section));
+
+        // ========================================
+        // SKILL BARS ANIMATION
+        // ========================================
+        const skillItems = document.querySelectorAll('.skill-item');
+        let skillsAnimated = false;
+
+        const skillsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !skillsAnimated) {
+                    skillsAnimated = true;
+                    skillItems.forEach((skill, index) => {
+                        setTimeout(() => {
+                            skill.style.animation = 'skillPop 0.5s ease forwards';
+                        }, index * 100);
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const skillsSection = document.querySelector('.skills-grid');
+        if (skillsSection) skillsObserver.observe(skillsSection);
+
+        // ========================================
+        // INTERACTIVE CURSOR EFFECT
+        // ========================================
+        const cursor = document.getElementById('cursor');
+        const cursorDot = document.getElementById('cursor-dot');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
+        });
+
+        document.querySelectorAll('a, button, .skill-item, .cert-card, .experience-item').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('expanded'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('expanded'));
+        });
+
+        // ========================================
+        // SCROLL PROGRESS BAR
+        // ========================================
+        const progressBar = document.getElementById('scroll-progress');
+
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            progressBar.style.width = (window.scrollY / windowHeight * 100) + '%';
+        });
+
+        // ========================================
+        // COUNTER ANIMATION (requestAnimationFrame)
+        // ========================================
+        function animateCounter(element, target, duration = 2000) {
+            let start = null;
+            function step(timestamp) {
+                if (!start) start = timestamp;
+                const progress = Math.min((timestamp - start) / duration, 1);
+                element.textContent = Math.floor(progress * target);
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                } else {
+                    element.textContent = target;
+                }
+            }
+            requestAnimationFrame(step);
+        }
+
+        // ========================================
+        // FLOATING WHATSAPP BUTTON
+        // ========================================
+        const floatingBtn = document.getElementById('whatsapp-btn');
+        const tooltip = document.getElementById('whatsapp-tooltip');
+
+        floatingBtn.addEventListener('mouseenter', () => {
+            floatingBtn.style.transform = 'scale(1.2) rotate(360deg)';
+            tooltip.style.opacity = '1';
+            tooltip.style.bottom = '95px';
+        });
+        floatingBtn.addEventListener('mouseleave', () => {
+            floatingBtn.style.transform = '';
+            tooltip.style.opacity = '0';
+            tooltip.style.bottom = '100px';
+        });
+
+        // ========================================
+        // SKILL ITEM CLICK EFFECT
+        // ========================================
+        skillItems.forEach(skill => {
+            skill.addEventListener('click', function() {
+                this.style.transform = 'scale(1.1) rotate(5deg)';
+                setTimeout(() => { this.style.transform = 'translateY(-5px)'; }, 200);
+            });
+        });
+
+        // ========================================
+        // CERTIFICATE CARD FLIP EFFECT
+        // ========================================
+        document.querySelectorAll('.cert-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'rotateY(10deg) translateY(-10px)';
+                setTimeout(() => { this.style.transform = 'rotateY(0deg) translateY(-10px)'; }, 300);
+            });
+        });
+
+        // ========================================
+        // STATS COUNTER
+        // ========================================
+        const counters = document.querySelectorAll('.counter');
+        let countersAnimated = false;
+
+        const countersObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !countersAnimated) {
+                    countersAnimated = true;
+                    counters.forEach(counter => {
+                        animateCounter(counter, parseInt(counter.getAttribute('data-target')));
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => countersObserver.observe(counter));
+
+        // ========================================
+        // EASTER EGG EN CONSOLA
+        // ========================================
+        console.log('%c¡Hola! 👨‍💻', 'color: #00ff80; font-size: 20px; font-weight: bold;');
+        console.log('%cVeo que andas de curioso. ¡Genial!', 'color: #ffff00; font-size: 14px;');
+        console.log('%cEste CV fue creado con ❤️ y mucho JavaScript', 'color: #00ff80; font-size: 12px;');
+
+        // ========================================
+        // KEYBOARD SHORTCUTS (merged listener)
+        // ========================================
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeCertificateModal();
+            }
+
+            const modal = document.getElementById('certificateModal');
+            if (modal.style.display === 'block') {
+                if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'p' || e.key === 'S' || e.key === 'P')) {
+                    e.preventDefault();
+                    return false;
+                }
+            }
+
+            if (e.key === 'h' || e.key === 'H') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            if (e.key === 'c' || e.key === 'C') {
+                document.querySelector('footer').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        // Deshabilitar clic derecho en las tarjetas de certificados
+        document.querySelectorAll('.cert-card').forEach(card => {
+            card.addEventListener('contextmenu', e => e.preventDefault());
+        });
+
+        // ========================================
+        // PERFORMANCE LOG
+        // ========================================
+        window.addEventListener('load', () => {
+            console.log(`%c⚡ Página cargada en ${Math.round(performance.now())}ms`, 'color: #00ff80; font-weight: bold;');
+        });
+
+        // ========================================
+        // CERTIFICATE MODAL FUNCTIONS
+        // ========================================
+        function openCertificateModal(pdfPath, title) {
+            const modal = document.getElementById('certificateModal');
+            const modalPdf = document.getElementById('modalPdf');
+            const modalTitle = document.getElementById('modalTitle');
+
+            modalTitle.textContent = title;
+            modalPdf.src = pdfPath + '#toolbar=0&navpanes=0&scrollbar=1&view=FitH';
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+
+            modal.oncontextmenu = e => e.preventDefault();
+        }
+
+        function closeCertificateModal() {
+            const modal = document.getElementById('certificateModal');
+            const modalPdf = document.getElementById('modalPdf');
+
+            modal.style.display = 'none';
+            modalPdf.src = '';
+            document.body.style.overflow = 'auto';
+        }
+    </script>
+</body>
+</html>
