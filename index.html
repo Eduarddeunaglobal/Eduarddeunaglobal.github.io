@@ -489,64 +489,60 @@
             z-index: 10;
         }
 
-        /* ─── Side decorations ───────────────────────── */
-        .deco-col {
+        /* ─── Background code decoration ────────────── */
+        .bg-code {
             position: fixed;
-            top: 0;
-            height: 100%;
-            width: 175px;
+            inset: 0;
             pointer-events: none;
             z-index: 0;
-            display: none;
+            overflow: hidden;
         }
 
-        @media (min-width: 1280px) {
-            .deco-col { display: block; }
+        /* El contenido principal por encima del fondo */
+        .container {
+            position: relative;
+            z-index: 1;
         }
-
-        .deco-left  { left:  max(16px, calc(50% - 560px)); }
-        .deco-right { right: max(16px, calc(50% - 560px)); }
 
         .deco-item {
             position: absolute;
-            opacity: 0.09;
-            transition: opacity 0.4s ease;
+            pointer-events: none;
         }
 
-        .deco-item:hover { opacity: 0.17; }
-
-        /* Línea lateral izquierda */
-        .deco-left .deco-item {
-            padding-left: 14px;
-            border-left: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Línea lateral derecha */
-        .deco-right .deco-item {
-            padding-right: 14px;
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: right;
-            right: 0;
-        }
+        /* Fragmentos del centro (detrás del contenido): muy sutiles */
+        .deco-item.dim   { opacity: 0.035; }
+        /* Fragmentos en los laterales: un poco más visibles */
+        .deco-item.side  { opacity: 0.08; }
 
         .deco-item code {
             display: block;
             font-family: 'Courier New', monospace;
-            font-size: 0.7em;
+            font-size: 0.68em;
             color: #ffffff;
             white-space: nowrap;
-            letter-spacing: 0;
-            line-height: 1.5;
+            line-height: 1.55;
         }
 
         .deco-item span {
             display: block;
-            font-size: 0.55em;
-            color: #52525b;
+            font-size: 0.52em;
+            color: #3f3f46;
             margin-top: 5px;
             letter-spacing: 1.8px;
             text-transform: uppercase;
             font-family: 'Poppins', sans-serif;
+        }
+
+        /* Línea izquierda para items del lado izquierdo */
+        .deco-item.side.left-edge {
+            padding-left: 12px;
+            border-left: 1px solid rgba(255,255,255,0.08);
+        }
+        /* Línea derecha para items del lado derecho */
+        .deco-item.side.right-edge {
+            padding-right: 12px;
+            border-right: 1px solid rgba(255,255,255,0.08);
+            text-align: right;
         }
 
         /* ─── WhatsApp ────────────────────────────────── */
@@ -756,52 +752,151 @@
     </div>
 
     <!-- WhatsApp -->
-    <!-- Decoración lateral izquierda -->
-    <div class="deco-col deco-left" aria-hidden="true">
-        <div class="deco-item" style="top:10%">
+    <!-- Fondo decorativo de código -->
+    <div class="bg-code" aria-hidden="true">
+
+        <!-- ── Borde izquierdo ── -->
+        <div class="deco-item side left-edge" style="left:1%;top:7%">
             <code>def main():</code>
             <code>&nbsp;&nbsp;return solve()</code>
             <span>Python</span>
         </div>
-        <div class="deco-item" style="top:30%">
+        <div class="deco-item side left-edge" style="left:1%;top:27%">
             <code>&lt;?php</code>
             <code>echo $response;</code>
             <span>PHP</span>
         </div>
-        <div class="deco-item" style="top:52%">
+        <div class="deco-item side left-edge" style="left:1%;top:49%">
             <code>public class App {</code>
             <code>&nbsp;&nbsp;void run() {}</code>
             <span>Java</span>
         </div>
-        <div class="deco-item" style="top:73%">
+        <div class="deco-item side left-edge" style="left:1%;top:70%">
             <code>add_action(</code>
-            <code>&nbsp;&nbsp;'init', $fn);</code>
+            <code>&nbsp;&nbsp;'init', $hook);</code>
             <span>WordPress</span>
         </div>
-    </div>
-
-    <!-- Decoración lateral derecha -->
-    <div class="deco-col deco-right" aria-hidden="true">
-        <div class="deco-item" style="top:17%">
-            <code>const api =</code>
-            <code>async () =&gt; {}</code>
-            <span>JavaScript</span>
+        <div class="deco-item side left-edge" style="left:1%;top:88%">
+            <code>git commit -m</code>
+            <code>&nbsp;&nbsp;"feat: new api"</code>
+            <span>Git</span>
         </div>
-        <div class="deco-item" style="top:38%">
-            <code>Route::get(</code>
-            <code>&nbsp;&nbsp;'/', $ctrl);</code>
+
+        <!-- ── Cuarto izquierdo ── -->
+        <div class="deco-item dim" style="left:18%;top:13%">
+            <code>import pandas as pd</code>
+            <code>df = pd.read_csv()</code>
+            <span>Python</span>
+        </div>
+        <div class="deco-item dim" style="left:22%;top:38%">
+            <code>Route::middleware(</code>
+            <code>&nbsp;&nbsp;['auth'])-&gt;group()</code>
             <span>Laravel</span>
         </div>
-        <div class="deco-item" style="top:60%">
+        <div class="deco-item dim" style="left:16%;top:62%">
+            <code>SELECT u.name</code>
+            <code>FROM users u</code>
+            <span>SQL</span>
+        </div>
+        <div class="deco-item dim" style="left:20%;top:83%">
+            <code>docker build</code>
+            <code>&nbsp;&nbsp;-t myapp:latest .</code>
+            <span>DevOps</span>
+        </div>
+
+        <!-- ── Centro izquierdo ── -->
+        <div class="deco-item dim" style="left:36%;top:5%">
+            <code>@RestController</code>
+            <code>public class API {}</code>
+            <span>Java</span>
+        </div>
+        <div class="deco-item dim" style="left:38%;top:32%">
+            <code>const fn = async</code>
+            <code>&nbsp;&nbsp;() =&gt; await req()</code>
+            <span>JavaScript</span>
+        </div>
+        <div class="deco-item dim" style="left:34%;top:56%">
+            <code>model.fit(</code>
+            <code>&nbsp;&nbsp;X_train, y_train)</code>
+            <span>IA aplicada</span>
+        </div>
+        <div class="deco-item dim" style="left:40%;top:78%">
+            <code>// TODO: optimize</code>
+            <code>return cached ?? fetch()</code>
+            <span>JavaScript</span>
+        </div>
+
+        <!-- ── Centro derecho ── -->
+        <div class="deco-item dim" style="left:56%;top:18%">
+            <code>class UserService</code>
+            <code>&nbsp;&nbsp;implements IService</code>
+            <span>PHP</span>
+        </div>
+        <div class="deco-item dim" style="left:60%;top:44%">
+            <code>useState&lt;User | null&gt;</code>
+            <code>&nbsp;&nbsp;(null)</code>
+            <span>Mobile</span>
+        </div>
+        <div class="deco-item dim" style="left:54%;top:68%">
+            <code>python manage.py</code>
+            <code>&nbsp;&nbsp;runserver 0:8000</code>
+            <span>Python</span>
+        </div>
+        <div class="deco-item dim" style="left:62%;top:91%">
+            <code>npm run build</code>
+            <code>&nbsp;&nbsp;&amp;&amp; deploy --prod</code>
+            <span>DevOps</span>
+        </div>
+
+        <!-- ── Cuarto derecho ── -->
+        <div class="deco-item dim" style="left:75%;top:9%">
+            <code>composer require</code>
+            <code>&nbsp;&nbsp;laravel/sanctum</code>
+            <span>Laravel</span>
+        </div>
+        <div class="deco-item dim" style="left:78%;top:34%">
+            <code>wp_enqueue_script(</code>
+            <code>&nbsp;&nbsp;'main', $src);</code>
+            <span>WordPress</span>
+        </div>
+        <div class="deco-item dim" style="left:72%;top:57%">
+            <code>@media (max-width:</code>
+            <code>&nbsp;&nbsp;768px) { ... }</code>
+            <span>CSS</span>
+        </div>
+        <div class="deco-item dim" style="left:76%;top:79%">
+            <code>fetch('/api/data')</code>
+            <code>&nbsp;&nbsp;.then(r =&gt; r.json())</code>
+            <span>JavaScript</span>
+        </div>
+
+        <!-- ── Borde derecho ── -->
+        <div class="deco-item side right-edge" style="right:1%;top:12%">
+            <code>async () =&gt; {}</code>
+            <code>await Promise.all()</code>
+            <span>JavaScript</span>
+        </div>
+        <div class="deco-item side right-edge" style="right:1%;top:32%">
+            <code>Route::get('/'</code>
+            <code>&nbsp;&nbsp;[$ctrl, 'index'])</code>
+            <span>Laravel</span>
+        </div>
+        <div class="deco-item side right-edge" style="right:1%;top:54%">
             <code>model.predict(</code>
             <code>&nbsp;&nbsp;input_data)</code>
             <span>IA aplicada</span>
         </div>
-        <div class="deco-item" style="top:80%">
+        <div class="deco-item side right-edge" style="right:1%;top:74%">
             <code>AppRegistry</code>
             <code>&nbsp;&nbsp;.registerComponent</code>
             <span>Mobile</span>
         </div>
+        <div class="deco-item side right-edge" style="right:1%;top:91%">
+            <code>export default</code>
+            <code>&nbsp;&nbsp;withAuth(App)</code>
+            <span>JavaScript</span>
+        </div>
+
     </div>
 
     <a href="https://wa.me/573123915395?text=Hola%20Eduard,%20vi%20tu%20CV%20y%20me%20gustar%C3%ADa%20contactarte" target="_blank" class="whatsapp-float" aria-label="Contactar por WhatsApp">
