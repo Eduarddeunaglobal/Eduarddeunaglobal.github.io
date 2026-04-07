@@ -4,978 +4,768 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eduard Camilo Sánchez García — Ingeniero de Sistemas</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* ─── Reset ──────────────────────────────────── */
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         /* ─── Base ───────────────────────────────────── */
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #0a0a0b;
-            /* Dot grid */
-            background-image: radial-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+            font-family: 'Inter', sans-serif;
+            background-color: #09090b;
+            background-image: radial-gradient(rgba(255,255,255,0.042) 1px, transparent 1px);
             background-size: 28px 28px;
             color: #a1a1aa;
-            line-height: 1.7;
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Grain overlay — film-like texture */
+        /* Grain overlay */
         body::before {
             content: '';
             position: fixed;
             inset: 0;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-            opacity: 0.038;
+            opacity: 0.035;
             pointer-events: none;
             z-index: 9998;
         }
 
-        .container {
-            max-width: 740px;
+        a { color: inherit; text-decoration: none; }
+
+        /* ─── Page wrapper ───────────────────────────── */
+        .page-wrapper {
+            max-width: 1040px;
             margin: 0 auto;
-            padding: 0 28px;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        /* ─── Header ─────────────────────────────────── */
-        header {
-            padding: 88px 0 72px;
-            text-align: center;
-            position: relative;
-        }
-
-        /* Glow suave centrado detrás del header */
-        header::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
-            height: 320px;
-            background: radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.04) 0%, transparent 72%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        header > * {
+            padding: 0 32px;
             position: relative;
             z-index: 1;
         }
 
-        .profile-image-container {
-            width: 108px;
-            height: 108px;
-            margin: 0 auto 28px;
+        /* ─── Two-column grid ────────────────────────── */
+        .cv-grid {
+            display: grid;
+            grid-template-columns: 232px 1fr;
+            gap: 0;
+            align-items: start;
+        }
+
+        /* ─── Sidebar ────────────────────────────────── */
+        .sidebar {
+            padding: 72px 40px 72px 0;
+            border-right: 1px solid rgba(255,255,255,0.05);
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+        .sidebar::-webkit-scrollbar { display: none; }
+
+        /* Profile photo */
+        .profile-photo {
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.03);
+            margin-bottom: 18px;
+        }
+        .profile-photo img {
+            width: 100%; height: 100%;
+            object-fit: cover; object-position: center;
         }
 
-        .profile-image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
-
-        h1 {
-            font-size: 2em;
+        /* Name & title */
+        .profile-name {
+            font-size: 1.05em;
             font-weight: 700;
             color: #fafafa;
-            margin-bottom: 6px;
-            letter-spacing: -0.3px;
+            line-height: 1.3;
+            letter-spacing: -0.2px;
+            margin-bottom: 5px;
         }
-
-        .subtitle {
-            font-size: 0.8em;
-            color: #3f3f46;
+        .profile-title {
+            font-size: 0.72em;
+            color: #52525b;
             font-weight: 500;
+            line-height: 1.5;
             margin-bottom: 28px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
         }
 
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 5px 14px;
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            border-radius: 100px;
-            font-size: 0.82em;
-            color: #71717a;
-            transition: border-color 0.15s, color 0.15s;
-        }
-
-        .contact-item:hover {
-            border-color: rgba(255, 255, 255, 0.14);
-            color: #d4d4d8;
-        }
-
-        .linkedin-btn {
+        /* Status badge */
+        .status-badge {
             display: inline-flex;
             align-items: center;
-            gap: 7px;
-            padding: 9px 24px;
-            background: #fafafa;
-            color: #0a0a0b;
+            gap: 6px;
+            font-size: 0.68em;
+            color: #4ade80;
+            background: rgba(74, 222, 128, 0.08);
+            border: 1px solid rgba(74, 222, 128, 0.18);
+            padding: 4px 10px;
             border-radius: 100px;
+            margin-bottom: 28px;
+            font-weight: 500;
+        }
+        .status-badge::before {
+            content: '';
+            width: 5px; height: 5px;
+            border-radius: 50%;
+            background: #4ade80;
+            box-shadow: 0 0 6px #4ade80;
+        }
+
+        /* Sidebar labels */
+        .sidebar-label {
+            font-size: 0.6em;
             font-weight: 600;
-            font-size: 0.82em;
-            letter-spacing: 0.2px;
-            transition: background 0.15s, transform 0.15s;
+            color: #3f3f46;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            margin-bottom: 12px;
+            display: block;
         }
 
+        .sidebar-block { margin-bottom: 30px; }
+
+        /* Contact list */
+        .contact-list { list-style: none; }
+        .contact-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 0.74em;
+            color: #71717a;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            line-height: 1.4;
+        }
+        .contact-list li:last-child { border-bottom: none; }
+        .contact-list .icon {
+            color: #3f3f46;
+            flex-shrink: 0;
+            margin-top: 1px;
+            font-style: normal;
+        }
+
+        /* Skills list */
+        .skills-group { margin-bottom: 14px; }
+        .skills-group-label {
+            font-size: 0.6em;
+            color: #3f3f46;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 7px;
+            display: block;
+        }
+        .skill-row {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.74em;
+            color: #71717a;
+            padding: 4px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.025);
+        }
+        .skill-row:last-child { border-bottom: none; }
+        .skill-dot {
+            width: 3px; height: 3px;
+            border-radius: 50%;
+            background: #3f3f46;
+            flex-shrink: 0;
+        }
+
+        /* Education in sidebar */
+        .edu-item { margin-bottom: 14px; }
+        .edu-item:last-child { margin-bottom: 0; }
+        .edu-degree {
+            font-size: 0.76em;
+            color: #d4d4d8;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        .edu-institution {
+            font-size: 0.68em;
+            color: #52525b;
+            margin-bottom: 2px;
+        }
+        .edu-date { font-size: 0.65em; color: #3f3f46; }
+
+        /* LinkedIn button */
+        .linkedin-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 7px;
+            color: #71717a;
+            font-size: 0.72em;
+            font-weight: 500;
+            transition: background 0.15s, border-color 0.15s, color 0.15s;
+            width: 100%;
+            font-family: 'Inter', sans-serif;
+        }
         .linkedin-btn:hover {
-            background: #ffffff;
-            transform: translateY(-1px);
+            background: rgba(255,255,255,0.07);
+            border-color: rgba(255,255,255,0.13);
+            color: #fafafa;
         }
 
-        /* ─── Sections ────────────────────────────────── */
+        /* ─── Main content ───────────────────────────── */
+        .main-content { padding: 72px 0 72px 56px; }
+
         .section {
-            padding: 48px 0;
-            position: relative;
+            padding-bottom: 40px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
             opacity: 0;
             transition: opacity 0.5s ease;
         }
-
-        /* Separador con gradiente en vez de línea plana */
-        .section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 20%, rgba(255,255,255,0.08) 80%, transparent 100%);
-        }
-
-        .section.visible {
-            opacity: 1;
-        }
+        .section:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+        .section.visible { opacity: 1; }
 
         .section-title {
-            font-size: 0.68em;
+            font-size: 0.62em;
             font-weight: 600;
             color: #3f3f46;
-            margin-bottom: 24px;
-            display: block;
             text-transform: uppercase;
             letter-spacing: 2.5px;
+            margin-bottom: 20px;
+            display: block;
         }
 
-        /* ─── About ──────────────────────────────────── */
+        /* About */
         .about-text {
-            font-size: 0.97em;
-            line-height: 1.8;
+            font-size: 0.88em;
+            line-height: 1.9;
             color: #a1a1aa;
         }
 
-        /* ─── Skills ─────────────────────────────────── */
-        .skills-grid {
+        /* Experience */
+        .exp-item {
+            margin-bottom: 28px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+        .exp-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+        .exp-header {
             display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 4px;
         }
-
-        .skill-item {
-            padding: 5px 16px;
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            border-radius: 100px;
-            font-size: 0.84em;
-            font-weight: 400;
+        .exp-role {
+            font-size: 0.88em;
+            font-weight: 600;
+            color: #fafafa;
+        }
+        .exp-date {
+            font-size: 0.7em;
+            color: #3f3f46;
+            white-space: nowrap;
+            margin-top: 2px;
+            font-variant-numeric: tabular-nums;
+        }
+        .exp-company {
+            font-size: 0.76em;
+            color: #52525b;
+            margin-bottom: 12px;
+        }
+        .exp-desc {
+            font-size: 0.83em;
+            line-height: 1.85;
             color: #71717a;
-            transition: border-color 0.15s, color 0.15s;
-            cursor: default;
         }
 
-        .skill-item:hover {
-            border-color: rgba(255, 255, 255, 0.16);
+        /* Certifications */
+        .cert-desc {
+            font-size: 0.82em;
+            line-height: 1.8;
+            color: #71717a;
+            margin-bottom: 20px;
+            padding-left: 12px;
+            border-left: 2px solid rgba(255,255,255,0.06);
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+            gap: 10px;
+        }
+
+        .cert-card {
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 8px;
+            padding: 14px;
+            cursor: pointer;
+            background: linear-gradient(160deg, rgba(255,255,255,0.018) 0%, transparent 55%);
+            transition: border-color 0.15s, background 0.15s;
+        }
+        .cert-card:hover {
+            border-color: rgba(255,255,255,0.11);
+            background: linear-gradient(160deg, rgba(255,255,255,0.032) 0%, transparent 55%);
+        }
+
+        .cert-preview {
+            width: 100%; height: 130px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 4px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .cert-name {
+            font-size: 0.74em;
+            font-weight: 600;
             color: #d4d4d8;
+            line-height: 1.4;
+            margin-bottom: 4px;
         }
+        .cert-issuer-text { font-size: 0.66em; color: #3f3f46; }
+        .cert-org-text { font-size: 0.66em; color: #3f3f46; margin-top: 2px; }
 
-        /* ─── Stats ──────────────────────────────────── */
+        .view-btn {
+            margin-top: 10px;
+            padding: 5px 0;
+            background: transparent;
+            color: #3f3f46;
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 5px;
+            font-size: 0.69em;
+            font-weight: 500;
+            width: 100%;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: color 0.15s, border-color 0.15s;
+        }
+        .view-btn:hover { color: #d4d4d8; border-color: rgba(255,255,255,0.11); }
+
+        /* Stats */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 10px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 9px;
             overflow: hidden;
         }
-
-        .stat-card {
+        .stat-cell {
+            padding: 22px 14px;
             text-align: center;
-            padding: 28px 16px;
-            background: #0c0c0d;
-            background-image:
-                radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,255,255,0.025) 0%, transparent 100%);
-            transition: background-color 0.15s;
+            background: #09090b;
+            background-image: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,255,255,0.018) 0%, transparent 100%);
         }
-
-        .stat-card:hover {
-            background-color: #111112;
-        }
-
-        .stat-number {
-            font-size: 2.2em;
-            color: #fafafa;
+        .stat-num {
+            font-size: 1.8em;
             font-weight: 700;
+            color: #fafafa;
             line-height: 1;
             letter-spacing: -1px;
+            font-variant-numeric: tabular-nums;
         }
-
-        .stat-label {
+        .stat-lbl {
+            font-size: 0.65em;
             color: #3f3f46;
             margin-top: 6px;
-            font-size: 0.78em;
             letter-spacing: 0.3px;
-        }
-
-        /* ─── Experience ──────────────────────────────── */
-        .experience-item {
-            padding-bottom: 28px;
-            margin-bottom: 28px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-        }
-
-        .experience-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .experience-title {
-            font-size: 0.97em;
-            color: #fafafa;
-            font-weight: 600;
-            margin-bottom: 2px;
-        }
-
-        .experience-company {
-            color: #52525b;
-            font-weight: 400;
-            font-size: 0.85em;
-            margin-bottom: 10px;
-        }
-
-        .experience-date {
-            font-size: 0.82em;
-            color: #3f3f46;
-            margin-bottom: 10px;
-        }
-
-        .experience-desc {
-            font-size: 0.9em;
-            line-height: 1.75;
-        }
-
-        /* ─── Education ───────────────────────────────── */
-        .education-item {
-            margin-bottom: 20px;
-        }
-
-        .education-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .education-degree {
-            font-size: 0.97em;
-            color: #fafafa;
-            font-weight: 600;
-            margin-bottom: 2px;
-        }
-
-        .education-institution {
-            color: #52525b;
-            font-size: 0.85em;
-            margin-bottom: 2px;
-        }
-
-        .education-date {
-            font-size: 0.82em;
-            color: #3f3f46;
-        }
-
-        /* ─── Certifications ──────────────────────────── */
-        .cert-description {
-            font-size: 0.88em;
-            line-height: 1.7;
-            margin-bottom: 24px;
-            color: #71717a;
-        }
-
-        .certifications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-        }
-
-        .cert-card {
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 8px;
-            padding: 16px;
-            background: linear-gradient(160deg, rgba(255,255,255,0.02) 0%, transparent 60%);
-            transition: border-color 0.15s, background 0.15s;
-            cursor: pointer;
-        }
-
-        .cert-card:hover {
-            border-color: rgba(255, 255, 255, 0.12);
-            background: linear-gradient(160deg, rgba(255,255,255,0.035) 0%, transparent 60%);
-        }
-
-        .cert-image-placeholder {
-            width: 100%;
-            height: 150px;
-            background: #111112;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 12px;
-            overflow: hidden;
-            user-select: none;
-            -webkit-user-select: none;
-        }
-
-        .cert-image-placeholder img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-
-        .cert-title {
-            color: #d4d4d8;
-            font-weight: 500;
-            margin-bottom: 4px;
-            font-size: 0.82em;
-            line-height: 1.4;
-        }
-
-        .cert-issuer {
-            color: #3f3f46;
-            font-size: 0.75em;
-        }
-
-        .cert-org {
-            color: #3f3f46;
-            font-size: 0.75em;
-            margin-top: 3px;
-        }
-
-        .view-cert-btn {
-            margin-top: 12px;
-            padding: 6px 14px;
-            background: transparent;
-            color: #52525b;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 100px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: border-color 0.15s, color 0.15s;
-            font-size: 0.76em;
-            width: 100%;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .view-cert-btn:hover {
-            border-color: rgba(255, 255, 255, 0.13);
-            color: #d4d4d8;
         }
 
         /* ─── Footer ──────────────────────────────────── */
         footer {
-            padding: 40px 0 48px;
-            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 28px 32px 44px;
+            border-top: 1px solid rgba(255,255,255,0.04);
             color: #27272a;
-            font-size: 0.8em;
+            font-size: 0.73em;
             text-align: center;
-        }
-
-        /* ─── Modal ───────────────────────────────────── */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 10000;
-            inset: 0;
-            background-color: rgba(0, 0, 0, 0.88);
-            animation: fadeIn 0.15s ease;
-        }
-
-        .modal-content {
-            position: relative;
-            background: #111112;
-            margin: 1.5% auto;
-            padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            border-radius: 10px;
-            width: 95%;
-            max-width: 1400px;
-            height: 95vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        #modalTitle {
-            font-size: 0.95em;
-            color: #71717a;
-        }
-
-        .close-modal {
-            color: #3f3f46;
-            font-size: 24px;
-            font-weight: 300;
-            cursor: pointer;
-            transition: color 0.15s;
-            line-height: 1;
-        }
-
-        .close-modal:hover {
-            color: #fafafa;
-        }
-
-        .modal-body {
-            position: relative;
-            flex: 1;
-            min-height: 0;
-        }
-
-        #modalPdf {
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 6px;
-            user-select: none;
-            -webkit-user-select: none;
-        }
-
-        .pdf-protection-overlay {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 56px;
-            background: linear-gradient(180deg, #111112 0%, transparent 100%);
-            pointer-events: none;
-            z-index: 10;
-        }
-
-        /* ─── Background code decoration ────────────── */
-        .bg-code {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        /* El contenido principal por encima del fondo */
-        .container {
             position: relative;
             z-index: 1;
         }
 
-        .deco-item {
-            position: absolute;
-            pointer-events: none;
+        /* ─── Modal ───────────────────────────────────── */
+        .modal {
+            display: none; position: fixed; inset: 0;
+            z-index: 10000; background: rgba(0,0,0,0.9);
+            animation: fadeIn 0.15s ease;
         }
-
-        /* Fragmentos del centro (detrás del contenido): muy sutiles */
-        .deco-item.dim   { opacity: 0.035; }
-        /* Fragmentos en los laterales: un poco más visibles */
-        .deco-item.side  { opacity: 0.08; }
-
-        .deco-item code {
-            display: block;
-            font-family: 'Courier New', monospace;
-            font-size: 0.68em;
-            color: #ffffff;
-            white-space: nowrap;
-            line-height: 1.55;
+        .modal-content {
+            position: relative; background: #111112;
+            margin: 1.5% auto; padding: 18px;
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 10px; width: 95%; max-width: 1400px;
+            height: 95vh; display: flex; flex-direction: column;
         }
-
-        .deco-item span {
-            display: block;
-            font-size: 0.52em;
-            color: #3f3f46;
-            margin-top: 5px;
-            letter-spacing: 1.8px;
-            text-transform: uppercase;
-            font-family: 'Poppins', sans-serif;
+        .modal-header {
+            display: flex; justify-content: space-between;
+            align-items: center; margin-bottom: 14px;
         }
-
-        /* Línea izquierda para items del lado izquierdo */
-        .deco-item.side.left-edge {
-            padding-left: 12px;
-            border-left: 1px solid rgba(255,255,255,0.08);
+        #modalTitle { font-size: 0.84em; color: #71717a; }
+        .close-modal {
+            color: #3f3f46; font-size: 22px; font-weight: 300;
+            cursor: pointer; transition: color 0.15s; line-height: 1;
         }
-        /* Línea derecha para items del lado derecho */
-        .deco-item.side.right-edge {
-            padding-right: 12px;
-            border-right: 1px solid rgba(255,255,255,0.08);
-            text-align: right;
+        .close-modal:hover { color: #fafafa; }
+        .modal-body { position: relative; flex: 1; min-height: 0; }
+        #modalPdf {
+            width: 100%; height: 100%; border: none;
+            border-radius: 5px; user-select: none; -webkit-user-select: none;
+        }
+        .pdf-overlay {
+            position: absolute; top: 0; right: 0; width: 100%; height: 56px;
+            background: linear-gradient(180deg, #111112 0%, transparent 100%);
+            pointer-events: none; z-index: 10;
         }
 
         /* ─── WhatsApp ────────────────────────────────── */
         .whatsapp-float {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            width: 46px;
-            height: 46px;
-            background: #25d366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            transition: transform 0.15s;
-            text-decoration: none;
+            position: fixed; bottom: 22px; right: 22px;
+            width: 42px; height: 42px; background: #25d366;
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; box-shadow: 0 2px 14px rgba(0,0,0,0.5);
+            z-index: 1000; transition: transform 0.15s; text-decoration: none;
         }
+        .whatsapp-float:hover { transform: scale(1.08); }
 
-        .whatsapp-float:hover {
-            transform: scale(1.08);
+        /* ─── Background code ─────────────────────────── */
+        .bg-code {
+            position: fixed; inset: 0;
+            pointer-events: none; z-index: 0; overflow: hidden;
+        }
+        .deco-item { position: absolute; pointer-events: none; }
+        .deco-item.dim  { opacity: 0.022; }
+        .deco-item.side { opacity: 0.06; }
+        .deco-item.left-edge  { padding-left: 12px; border-left: 1px solid rgba(255,255,255,0.07); }
+        .deco-item.right-edge { padding-right: 12px; border-right: 1px solid rgba(255,255,255,0.07); text-align: right; }
+        .deco-item code {
+            display: block; font-family: 'Courier New', monospace;
+            font-size: 0.64em; color: #fff; white-space: nowrap; line-height: 1.55;
+        }
+        .deco-item span {
+            display: block; font-size: 0.5em; color: #3f3f46;
+            margin-top: 4px; letter-spacing: 1.8px; text-transform: uppercase;
+            font-family: 'Inter', sans-serif;
         }
 
         /* ─── Animations ──────────────────────────────── */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         /* ─── Responsive ──────────────────────────────── */
-        @media (max-width: 640px) {
-            .container { padding: 0 18px; }
-            header { padding: 64px 0 52px; }
-            h1 { font-size: 1.65em; }
-            .section { padding: 36px 0; }
+        @media (max-width: 820px) {
+            .cv-grid { grid-template-columns: 1fr; }
+            .sidebar {
+                position: static; height: auto; overflow: visible;
+                padding: 56px 0 32px;
+                border-right: none;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+            }
+            .profile-photo { width: 72px; height: 72px; }
+            .main-content { padding: 36px 0 56px; }
+            .page-wrapper { padding: 0 20px; }
+        }
+
+        @media (max-width: 560px) {
+            .cert-grid { grid-template-columns: 1fr; }
             .stats-grid { grid-template-columns: repeat(3, 1fr); }
-            .certifications-grid { grid-template-columns: 1fr; }
-            .modal-content { width: 98%; padding: 14px; margin: 1% auto; height: 96vh; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
 
-        <!-- ─── Header ─────────────────────────────── -->
-        <header>
-            <div class="profile-image-container">
-                <img src="perfil.png" alt="Eduard Camilo Sánchez García">
-            </div>
-
-            <h1>Eduard Camilo Sánchez García</h1>
-            <p class="subtitle">Ingeniero de Sistemas &nbsp;·&nbsp; Full Stack &amp; Mobile Developer</p>
-
-            <div class="contact-info">
-                <div class="contact-item">
-                    <span>&#9993;</span>
-                    <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="daa9bbb4b9b2bfa0bfbeafbba8beece29abdb7bbb3b6f4b9b5b7">[email&#160;protected]</a></span>
-                </div>
-                <div class="contact-item">
-                    <span>&#9741;</span>
-                    <span>Colombia &rarr; Puerto Rico</span>
-                </div>
-                <div class="contact-item">
-                    <span>&#9676;</span>
-                    <span>Graduado 2025</span>
-                </div>
-            </div>
-
-            <a href="https://www.linkedin.com/in/eduard-camilo-sanchez-garcia-651405335/" target="_blank" class="linkedin-btn">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                </svg>
-                Conecta en LinkedIn
-            </a>
-        </header>
-
-        <!-- ─── Sobre Mí ────────────────────────────── -->
-        <section class="section">
-            <span class="section-title">Sobre mí</span>
-            <p class="about-text">
-                Ingeniero de Sistemas graduado en 2025, especializado en desarrollo full stack y móvil. Actualmente trabajo desarrollando soluciones tecnológicas para Puerto Rico desde Colombia, integrando herramientas de inteligencia artificial en los proyectos para potenciar su funcionalidad y automatizar procesos. Apasionado por la tecnología, la seguridad de la información y el aprendizaje continuo de nuevas herramientas y lenguajes de programación.
-            </p>
-        </section>
-
-        <!-- ─── Habilidades ────────────────────────── -->
-        <section class="section">
-            <span class="section-title">Habilidades técnicas</span>
-            <div class="skills-grid">
-                <div class="skill-item">Java</div>
-                <div class="skill-item">JavaScript</div>
-                <div class="skill-item">Python</div>
-                <div class="skill-item">PHP</div>
-                <div class="skill-item">Laravel</div>
-                <div class="skill-item">WordPress</div>
-                <div class="skill-item">Desarrollo móvil</div>
-                <div class="skill-item">IA aplicada</div>
-                <div class="skill-item">En aprendizaje continuo</div>
-            </div>
-        </section>
-
-        <!-- ─── Estadísticas ───────────────────────── -->
-        <section class="section">
-            <span class="section-title">En números</span>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number counter" data-target="6">0</div>
-                    <div class="stat-label">Lenguajes</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number counter" data-target="3">0</div>
-                    <div class="stat-label">Certificaciones ISO</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number counter" data-target="2025">0</div>
-                    <div class="stat-label">Año de graduación</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ─── Experiencia ────────────────────────── -->
-        <section class="section">
-            <span class="section-title">Experiencia</span>
-            <div class="experience-item">
-                <p class="experience-title">Desarrollador Full Stack &amp; Mobile</p>
-                <p class="experience-company">Empresa de Desarrollo — Puerto Rico (Remoto)</p>
-                <p class="experience-date">2025 — Presente</p>
-                <p class="experience-desc">
-                    Desarrollo de soluciones tecnológicas utilizando múltiples lenguajes de programación (Java, JavaScript, Python, PHP, Laravel, WordPress) e integración de herramientas de inteligencia artificial. Trabajo remoto desde Colombia para cliente en Puerto Rico, enfocado en crear aplicaciones web y móviles robustas y escalables.
-                </p>
-            </div>
-        </section>
-
-        <!-- ─── Educación ──────────────────────────── -->
-        <section class="section">
-            <span class="section-title">Educación</span>
-            <div class="education-item">
-                <p class="education-degree">Ingeniería de Sistemas</p>
-                <p class="education-institution">Fundación Universitaria Los Libertadores</p>
-                <p class="education-date">Graduado 2025</p>
-            </div>
-        </section>
-
-        <!-- ─── Certificaciones ────────────────────── -->
-        <section class="section">
-            <span class="section-title">Certificaciones</span>
-            <p class="cert-description">
-                Formación especializada en estándares internacionales de gestión y auditoría, con certificaciones emitidas por el American Council of Certification, Inspections and Training, desarrolladas en conjunto con Grupo Élite Organizacional. Estas acreditaciones fortalecen mis competencias en seguridad de la información, auditoría de sistemas de gestión y uso responsable de IA en entornos organizacionales.
-            </p>
-            <div class="certifications-grid">
-                <div class="cert-card" onclick="openCertificateModal('certificado1.pdf', 'ISO 27001:2022 — IA')">
-                    <div class="cert-image-placeholder">
-                        <embed src="certificado1.pdf" type="application/pdf" width="100%" height="100%" style="border:none;">
-                    </div>
-                    <p class="cert-title">ISO 27001:2022 — Uso de IA en Sistemas de Gestión de Seguridad de la Información</p>
-                    <p class="cert-issuer">American Council of Certification, Inspections and Training</p>
-                    <p class="cert-org">Grupo Élite Organizacional S.A.S</p>
-                    <button class="view-cert-btn" onclick="event.stopPropagation(); openCertificateModal('certificado1.pdf', 'ISO 27001:2022 — IA')">
-                        Ver certificado
-                    </button>
-                </div>
-
-                <div class="cert-card" onclick="openCertificateModal('certificado2.pdf', 'ISO 19011:2018')">
-                    <div class="cert-image-placeholder">
-                        <embed src="certificado2.pdf" type="application/pdf" width="100%" height="100%" style="border:none;">
-                    </div>
-                    <p class="cert-title">ISO 19011:2018 — Directrices para Auditar Sistemas de Gestión</p>
-                    <p class="cert-issuer">American Council of Certification, Inspections and Training</p>
-                    <p class="cert-org">Grupo Élite Organizacional S.A.S</p>
-                    <button class="view-cert-btn" onclick="event.stopPropagation(); openCertificateModal('certificado2.pdf', 'ISO 19011:2018')">
-                        Ver certificado
-                    </button>
-                </div>
-
-                <div class="cert-card" onclick="openCertificateModal('certificado3.pdf', 'ISO 27001:2022')">
-                    <div class="cert-image-placeholder">
-                        <embed src="certificado3.pdf" type="application/pdf" width="100%" height="100%" style="border:none;">
-                    </div>
-                    <p class="cert-title">ISO 27001:2022 — Sistemas de Gestión de la Seguridad de la Información</p>
-                    <p class="cert-issuer">American Council of Certification, Inspections and Training</p>
-                    <p class="cert-org">Grupo Élite Organizacional S.A.S</p>
-                    <button class="view-cert-btn" onclick="event.stopPropagation(); openCertificateModal('certificado3.pdf', 'ISO 27001:2022')">
-                        Ver certificado
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- ─── Modal certificados ─────────────────── -->
-        <div id="certificateModal" class="modal" onclick="closeCertificateModal()">
-            <div class="modal-content" onclick="event.stopPropagation()">
-                <div class="modal-header">
-                    <h3 id="modalTitle"></h3>
-                    <span class="close-modal" onclick="closeCertificateModal()">&times;</span>
-                </div>
-                <div class="modal-body">
-                    <iframe id="modalPdf" width="100%" height="100%"></iframe>
-                    <div class="pdf-protection-overlay"></div>
-                </div>
-            </div>
-        </div>
-
-        <footer>
-            <p>&copy; 2025 Eduard Camilo Sánchez García</p>
-        </footer>
-
-    </div>
-
-    <!-- WhatsApp -->
-    <!-- Fondo decorativo de código -->
+    <!-- ─── Background code decoration ──────────────── -->
     <div class="bg-code" aria-hidden="true">
+        <div class="deco-item side left-edge" style="left:1%;top:7%"><code>def main():</code><code>&nbsp;&nbsp;return solve()</code><span>Python</span></div>
+        <div class="deco-item side left-edge" style="left:1%;top:27%"><code>&lt;?php</code><code>echo $response;</code><span>PHP</span></div>
+        <div class="deco-item side left-edge" style="left:1%;top:49%"><code>public class App {</code><code>&nbsp;&nbsp;void run() {}</code><span>Java</span></div>
+        <div class="deco-item side left-edge" style="left:1%;top:70%"><code>add_action(</code><code>&nbsp;&nbsp;'init', $hook);</code><span>WordPress</span></div>
+        <div class="deco-item side left-edge" style="left:1%;top:88%"><code>git commit -m</code><code>&nbsp;&nbsp;"feat: new api"</code><span>Git</span></div>
 
-        <!-- ── Borde izquierdo ── -->
-        <div class="deco-item side left-edge" style="left:1%;top:7%">
-            <code>def main():</code>
-            <code>&nbsp;&nbsp;return solve()</code>
-            <span>Python</span>
-        </div>
-        <div class="deco-item side left-edge" style="left:1%;top:27%">
-            <code>&lt;?php</code>
-            <code>echo $response;</code>
-            <span>PHP</span>
-        </div>
-        <div class="deco-item side left-edge" style="left:1%;top:49%">
-            <code>public class App {</code>
-            <code>&nbsp;&nbsp;void run() {}</code>
-            <span>Java</span>
-        </div>
-        <div class="deco-item side left-edge" style="left:1%;top:70%">
-            <code>add_action(</code>
-            <code>&nbsp;&nbsp;'init', $hook);</code>
-            <span>WordPress</span>
-        </div>
-        <div class="deco-item side left-edge" style="left:1%;top:88%">
-            <code>git commit -m</code>
-            <code>&nbsp;&nbsp;"feat: new api"</code>
-            <span>Git</span>
-        </div>
+        <div class="deco-item dim" style="left:18%;top:13%"><code>import pandas as pd</code><code>df = pd.read_csv()</code><span>Python</span></div>
+        <div class="deco-item dim" style="left:22%;top:38%"><code>Route::middleware(</code><code>&nbsp;&nbsp;['auth'])-&gt;group()</code><span>Laravel</span></div>
+        <div class="deco-item dim" style="left:16%;top:62%"><code>SELECT u.name</code><code>FROM users u</code><span>SQL</span></div>
+        <div class="deco-item dim" style="left:20%;top:83%"><code>docker build</code><code>&nbsp;&nbsp;-t myapp:latest .</code><span>DevOps</span></div>
 
-        <!-- ── Cuarto izquierdo ── -->
-        <div class="deco-item dim" style="left:18%;top:13%">
-            <code>import pandas as pd</code>
-            <code>df = pd.read_csv()</code>
-            <span>Python</span>
-        </div>
-        <div class="deco-item dim" style="left:22%;top:38%">
-            <code>Route::middleware(</code>
-            <code>&nbsp;&nbsp;['auth'])-&gt;group()</code>
-            <span>Laravel</span>
-        </div>
-        <div class="deco-item dim" style="left:16%;top:62%">
-            <code>SELECT u.name</code>
-            <code>FROM users u</code>
-            <span>SQL</span>
-        </div>
-        <div class="deco-item dim" style="left:20%;top:83%">
-            <code>docker build</code>
-            <code>&nbsp;&nbsp;-t myapp:latest .</code>
-            <span>DevOps</span>
-        </div>
+        <div class="deco-item dim" style="left:36%;top:5%"><code>@RestController</code><code>public class API {}</code><span>Java</span></div>
+        <div class="deco-item dim" style="left:38%;top:32%"><code>const fn = async</code><code>&nbsp;&nbsp;() =&gt; await req()</code><span>JavaScript</span></div>
+        <div class="deco-item dim" style="left:34%;top:56%"><code>model.fit(</code><code>&nbsp;&nbsp;X_train, y_train)</code><span>IA aplicada</span></div>
+        <div class="deco-item dim" style="left:40%;top:78%"><code>// TODO: optimize</code><code>return cached ?? fetch()</code><span>JavaScript</span></div>
 
-        <!-- ── Centro izquierdo ── -->
-        <div class="deco-item dim" style="left:36%;top:5%">
-            <code>@RestController</code>
-            <code>public class API {}</code>
-            <span>Java</span>
-        </div>
-        <div class="deco-item dim" style="left:38%;top:32%">
-            <code>const fn = async</code>
-            <code>&nbsp;&nbsp;() =&gt; await req()</code>
-            <span>JavaScript</span>
-        </div>
-        <div class="deco-item dim" style="left:34%;top:56%">
-            <code>model.fit(</code>
-            <code>&nbsp;&nbsp;X_train, y_train)</code>
-            <span>IA aplicada</span>
-        </div>
-        <div class="deco-item dim" style="left:40%;top:78%">
-            <code>// TODO: optimize</code>
-            <code>return cached ?? fetch()</code>
-            <span>JavaScript</span>
-        </div>
+        <div class="deco-item dim" style="left:56%;top:18%"><code>class UserService</code><code>&nbsp;&nbsp;implements IService</code><span>PHP</span></div>
+        <div class="deco-item dim" style="left:60%;top:44%"><code>useState&lt;User | null&gt;</code><code>&nbsp;&nbsp;(null)</code><span>Mobile</span></div>
+        <div class="deco-item dim" style="left:54%;top:68%"><code>python manage.py</code><code>&nbsp;&nbsp;runserver 0:8000</code><span>Python</span></div>
+        <div class="deco-item dim" style="left:62%;top:91%"><code>npm run build</code><code>&nbsp;&nbsp;&amp;&amp; deploy --prod</code><span>DevOps</span></div>
 
-        <!-- ── Centro derecho ── -->
-        <div class="deco-item dim" style="left:56%;top:18%">
-            <code>class UserService</code>
-            <code>&nbsp;&nbsp;implements IService</code>
-            <span>PHP</span>
-        </div>
-        <div class="deco-item dim" style="left:60%;top:44%">
-            <code>useState&lt;User | null&gt;</code>
-            <code>&nbsp;&nbsp;(null)</code>
-            <span>Mobile</span>
-        </div>
-        <div class="deco-item dim" style="left:54%;top:68%">
-            <code>python manage.py</code>
-            <code>&nbsp;&nbsp;runserver 0:8000</code>
-            <span>Python</span>
-        </div>
-        <div class="deco-item dim" style="left:62%;top:91%">
-            <code>npm run build</code>
-            <code>&nbsp;&nbsp;&amp;&amp; deploy --prod</code>
-            <span>DevOps</span>
-        </div>
+        <div class="deco-item dim" style="left:75%;top:9%"><code>composer require</code><code>&nbsp;&nbsp;laravel/sanctum</code><span>Laravel</span></div>
+        <div class="deco-item dim" style="left:78%;top:34%"><code>wp_enqueue_script(</code><code>&nbsp;&nbsp;'main', $src);</code><span>WordPress</span></div>
+        <div class="deco-item dim" style="left:72%;top:57%"><code>@media (max-width:</code><code>&nbsp;&nbsp;768px) { ... }</code><span>CSS</span></div>
+        <div class="deco-item dim" style="left:76%;top:79%"><code>fetch('/api/data')</code><code>&nbsp;&nbsp;.then(r =&gt; r.json())</code><span>JavaScript</span></div>
 
-        <!-- ── Cuarto derecho ── -->
-        <div class="deco-item dim" style="left:75%;top:9%">
-            <code>composer require</code>
-            <code>&nbsp;&nbsp;laravel/sanctum</code>
-            <span>Laravel</span>
-        </div>
-        <div class="deco-item dim" style="left:78%;top:34%">
-            <code>wp_enqueue_script(</code>
-            <code>&nbsp;&nbsp;'main', $src);</code>
-            <span>WordPress</span>
-        </div>
-        <div class="deco-item dim" style="left:72%;top:57%">
-            <code>@media (max-width:</code>
-            <code>&nbsp;&nbsp;768px) { ... }</code>
-            <span>CSS</span>
-        </div>
-        <div class="deco-item dim" style="left:76%;top:79%">
-            <code>fetch('/api/data')</code>
-            <code>&nbsp;&nbsp;.then(r =&gt; r.json())</code>
-            <span>JavaScript</span>
-        </div>
-
-        <!-- ── Borde derecho ── -->
-        <div class="deco-item side right-edge" style="right:1%;top:12%">
-            <code>async () =&gt; {}</code>
-            <code>await Promise.all()</code>
-            <span>JavaScript</span>
-        </div>
-        <div class="deco-item side right-edge" style="right:1%;top:32%">
-            <code>Route::get('/'</code>
-            <code>&nbsp;&nbsp;[$ctrl, 'index'])</code>
-            <span>Laravel</span>
-        </div>
-        <div class="deco-item side right-edge" style="right:1%;top:54%">
-            <code>model.predict(</code>
-            <code>&nbsp;&nbsp;input_data)</code>
-            <span>IA aplicada</span>
-        </div>
-        <div class="deco-item side right-edge" style="right:1%;top:74%">
-            <code>AppRegistry</code>
-            <code>&nbsp;&nbsp;.registerComponent</code>
-            <span>Mobile</span>
-        </div>
-        <div class="deco-item side right-edge" style="right:1%;top:91%">
-            <code>export default</code>
-            <code>&nbsp;&nbsp;withAuth(App)</code>
-            <span>JavaScript</span>
-        </div>
-
+        <div class="deco-item side right-edge" style="right:1%;top:12%"><code>async () =&gt; {}</code><code>await Promise.all()</code><span>JavaScript</span></div>
+        <div class="deco-item side right-edge" style="right:1%;top:32%"><code>Route::get('/'</code><code>&nbsp;&nbsp;[$ctrl, 'index'])</code><span>Laravel</span></div>
+        <div class="deco-item side right-edge" style="right:1%;top:54%"><code>model.predict(</code><code>&nbsp;&nbsp;input_data)</code><span>IA aplicada</span></div>
+        <div class="deco-item side right-edge" style="right:1%;top:74%"><code>AppRegistry</code><code>&nbsp;&nbsp;.registerComponent</code><span>Mobile</span></div>
+        <div class="deco-item side right-edge" style="right:1%;top:91%"><code>export default</code><code>&nbsp;&nbsp;withAuth(App)</code><span>JavaScript</span></div>
     </div>
 
-    <a href="https://wa.me/573123915395?text=Hola%20Eduard,%20vi%20tu%20CV%20y%20me%20gustar%C3%ADa%20contactarte" target="_blank" class="whatsapp-float" aria-label="Contactar por WhatsApp">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="#ffffff">
+    <!-- ─── Page ──────────────────────────────────────── -->
+    <div class="page-wrapper">
+        <div class="cv-grid">
+
+            <!-- ══ Sidebar ══════════════════════════════ -->
+            <aside class="sidebar">
+
+                <div class="profile-photo">
+                    <img src="perfil.png" alt="Eduard Camilo Sánchez García">
+                </div>
+
+                <p class="profile-name">Eduard Camilo<br>Sánchez García</p>
+                <p class="profile-title">Ingeniero de Sistemas<br>Full Stack &amp; Mobile Developer</p>
+
+                <div class="status-badge">Disponible</div>
+
+                <!-- Contacto -->
+                <div class="sidebar-block">
+                    <span class="sidebar-label">Contacto</span>
+                    <ul class="contact-list">
+                        <li>
+                            <i class="icon">✉</i>
+                            <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="daa9bbb4b9b2bfa0bfbeafbba8beece29abdb7bbb3b6f4b9b5b7">[email&#160;protected]</a></span>
+                        </li>
+                        <li>
+                            <i class="icon">⌖</i>
+                            <span>Colombia → Puerto Rico</span>
+                        </li>
+                        <li>
+                            <i class="icon">◎</i>
+                            <span>Graduado 2025</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- LinkedIn -->
+                <div class="sidebar-block">
+                    <a href="https://www.linkedin.com/in/eduard-camilo-sanchez-garcia-651405335/" target="_blank" class="linkedin-btn">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                        LinkedIn
+                    </a>
+                </div>
+
+                <!-- Habilidades -->
+                <div class="sidebar-block">
+                    <span class="sidebar-label">Habilidades</span>
+
+                    <div class="skills-group">
+                        <span class="skills-group-label">Lenguajes</span>
+                        <div class="skill-row"><div class="skill-dot"></div>Java</div>
+                        <div class="skill-row"><div class="skill-dot"></div>JavaScript</div>
+                        <div class="skill-row"><div class="skill-dot"></div>Python</div>
+                        <div class="skill-row"><div class="skill-dot"></div>PHP</div>
+                    </div>
+
+                    <div class="skills-group">
+                        <span class="skills-group-label">Frameworks</span>
+                        <div class="skill-row"><div class="skill-dot"></div>Laravel</div>
+                        <div class="skill-row"><div class="skill-dot"></div>WordPress</div>
+                    </div>
+
+                    <div class="skills-group">
+                        <span class="skills-group-label">Especialidades</span>
+                        <div class="skill-row"><div class="skill-dot"></div>Desarrollo móvil</div>
+                        <div class="skill-row"><div class="skill-dot"></div>IA aplicada</div>
+                    </div>
+                </div>
+
+                <!-- Educación -->
+                <div class="sidebar-block">
+                    <span class="sidebar-label">Educación</span>
+                    <div class="edu-item">
+                        <p class="edu-degree">Ingeniería de Sistemas</p>
+                        <p class="edu-institution">Fundación Universitaria<br>Los Libertadores</p>
+                        <p class="edu-date">Graduado 2025</p>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- ══ Main content ══════════════════════════ -->
+            <main class="main-content">
+
+                <!-- Sobre mí -->
+                <section class="section">
+                    <span class="section-title">Sobre mí</span>
+                    <p class="about-text">
+                        Ingeniero de Sistemas graduado en 2025, especializado en desarrollo full stack y móvil. Actualmente trabajo desarrollando soluciones tecnológicas para Puerto Rico desde Colombia, integrando herramientas de inteligencia artificial en los proyectos para potenciar su funcionalidad y automatizar procesos. Apasionado por la tecnología, la seguridad de la información y el aprendizaje continuo de nuevas herramientas y lenguajes de programación.
+                    </p>
+                </section>
+
+                <!-- En números -->
+                <section class="section">
+                    <span class="section-title">En números</span>
+                    <div class="stats-grid">
+                        <div class="stat-cell">
+                            <div class="stat-num counter" data-target="6">0</div>
+                            <div class="stat-lbl">Lenguajes</div>
+                        </div>
+                        <div class="stat-cell">
+                            <div class="stat-num counter" data-target="3">0</div>
+                            <div class="stat-lbl">Certificaciones ISO</div>
+                        </div>
+                        <div class="stat-cell">
+                            <div class="stat-num counter" data-target="2025">0</div>
+                            <div class="stat-lbl">Año de graduación</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Experiencia -->
+                <section class="section">
+                    <span class="section-title">Experiencia</span>
+                    <div class="exp-item">
+                        <div class="exp-header">
+                            <p class="exp-role">Desarrollador Full Stack &amp; Mobile</p>
+                            <p class="exp-date">2025 — Presente</p>
+                        </div>
+                        <p class="exp-company">Empresa de Desarrollo &nbsp;·&nbsp; Puerto Rico (Remoto)</p>
+                        <p class="exp-desc">
+                            Desarrollo de soluciones tecnológicas utilizando múltiples lenguajes de programación (Java, JavaScript, Python, PHP, Laravel, WordPress) e integración de herramientas de inteligencia artificial. Trabajo remoto desde Colombia para cliente en Puerto Rico, enfocado en crear aplicaciones web y móviles robustas y escalables.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Certificaciones -->
+                <section class="section">
+                    <span class="section-title">Certificaciones</span>
+                    <p class="cert-desc">
+                        Formación especializada en estándares internacionales emitida por el American Council of Certification, Inspections and Training, desarrollada en conjunto con Grupo Élite Organizacional. Competencias en seguridad de la información, auditoría de sistemas de gestión y uso responsable de IA en entornos organizacionales.
+                    </p>
+                    <div class="cert-grid">
+
+                        <div class="cert-card" onclick="openModal('certificado1.pdf','ISO 27001:2022 — IA')">
+                            <div class="cert-preview">
+                                <embed src="certificado1.pdf" type="application/pdf" width="100%" height="100%" style="border:none;">
+                            </div>
+                            <p class="cert-name">ISO 27001:2022 — IA en Sistemas de Gestión de Seguridad</p>
+                            <p class="cert-issuer-text">American Council of Certification</p>
+                            <p class="cert-org-text">Grupo Élite Organizacional S.A.S</p>
+                            <button class="view-btn" onclick="event.stopPropagation();openModal('certificado1.pdf','ISO 27001:2022 — IA')">Ver certificado</button>
+                        </div>
+
+                        <div class="cert-card" onclick="openModal('certificado2.pdf','ISO 19011:2018')">
+                            <div class="cert-preview">
+                                <embed src="certificado2.pdf" type="application/pdf" width="100%" height="100%" style="border:none;">
+                            </div>
+                            <p class="cert-name">ISO 19011:2018 — Directrices para Auditar Sistemas de Gestión</p>
+                            <p class="cert-issuer-text">American Council of Certification</p>
+                            <p class="cert-org-text">Grupo Élite Organizacional S.A.S</p>
+                            <button class="view-btn" onclick="event.stopPropagation();openModal('certificado2.pdf','ISO 19011:2018')">Ver certificado</button>
+                        </div>
+
+                        <div class="cert-card" onclick="openModal('certificado3.pdf','ISO 27001:2022')">
+                            <div class="cert-preview">
+                                <embed src="certificado3.pdf" type="application/pdf" width="100%" height="100%" style="border:none;">
+                            </div>
+                            <p class="cert-name">ISO 27001:2022 — Sistemas de Gestión de la Seguridad de la Información</p>
+                            <p class="cert-issuer-text">American Council of Certification</p>
+                            <p class="cert-org-text">Grupo Élite Organizacional S.A.S</p>
+                            <button class="view-btn" onclick="event.stopPropagation();openModal('certificado3.pdf','ISO 27001:2022')">Ver certificado</button>
+                        </div>
+
+                    </div>
+                </section>
+
+            </main>
+        </div>
+
+        <footer>&copy; 2025 Eduard Camilo Sánchez García</footer>
+    </div>
+
+    <!-- ─── Modal certificados ─────────────────────── -->
+    <div id="certModal" class="modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 id="modalTitle"></h3>
+                <span class="close-modal" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <iframe id="modalPdf"></iframe>
+                <div class="pdf-overlay"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── WhatsApp ──────────────────────────────────── -->
+    <a href="https://wa.me/573123915395?text=Hola%20Eduard,%20vi%20tu%20CV%20y%20me%20gustar%C3%ADa%20contactarte"
+       target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#ffffff">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
         </svg>
     </a>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script>
-        // ─── Fade-in on scroll ────────────────────────
+        // Fade-in on scroll
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.08 });
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+        }, { threshold: 0.06 });
+        document.querySelectorAll('.section').forEach(s => observer.observe(s));
 
-        document.querySelectorAll('.section').forEach(section => observer.observe(section));
-
-        // ─── Stats counter ────────────────────────────
-        function animateCounter(element, target, duration = 1600) {
+        // Counter animation
+        function animateCounter(el, target, duration = 1400) {
             let start = null;
-            function step(timestamp) {
-                if (!start) start = timestamp;
-                const progress = Math.min((timestamp - start) / duration, 1);
-                element.textContent = Math.floor(progress * target);
-                if (progress < 1) requestAnimationFrame(step);
-                else element.textContent = target;
-            }
+            const step = (ts) => {
+                if (!start) start = ts;
+                const p = Math.min((ts - start) / duration, 1);
+                el.textContent = Math.floor(p * target);
+                if (p < 1) requestAnimationFrame(step); else el.textContent = target;
+            };
             requestAnimationFrame(step);
         }
-
-        const counters = document.querySelectorAll('.counter');
-        let countersTriggered = false;
-
-        const countersObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !countersTriggered) {
-                    countersTriggered = true;
-                    counters.forEach(counter => {
-                        animateCounter(counter, parseInt(counter.getAttribute('data-target')));
-                    });
+        let countersRun = false;
+        const cObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting && !countersRun) {
+                    countersRun = true;
+                    document.querySelectorAll('.counter').forEach(c =>
+                        animateCounter(c, parseInt(c.dataset.target)));
                 }
             });
         }, { threshold: 0.5 });
+        document.querySelectorAll('.counter').forEach(c => cObs.observe(c));
 
-        counters.forEach(counter => countersObserver.observe(counter));
-
-        // ─── Modal ────────────────────────────────────
-        function openCertificateModal(pdfPath, title) {
-            const modal = document.getElementById('certificateModal');
+        // Modal
+        function openModal(pdf, title) {
+            const m = document.getElementById('certModal');
             document.getElementById('modalTitle').textContent = title;
-            document.getElementById('modalPdf').src = pdfPath + '#toolbar=0&navpanes=0&scrollbar=1&view=FitH';
-            modal.style.display = 'block';
+            document.getElementById('modalPdf').src = pdf + '#toolbar=0&navpanes=0&scrollbar=1&view=FitH';
+            m.style.display = 'block';
             document.body.style.overflow = 'hidden';
-            modal.oncontextmenu = e => e.preventDefault();
+            m.oncontextmenu = e => e.preventDefault();
         }
-
-        function closeCertificateModal() {
-            const modal = document.getElementById('certificateModal');
-            modal.style.display = 'none';
+        function closeModal() {
+            const m = document.getElementById('certModal');
+            m.style.display = 'none';
             document.getElementById('modalPdf').src = '';
             document.body.style.overflow = 'auto';
         }
-
         document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') closeCertificateModal();
-            const modal = document.getElementById('certificateModal');
-            if (modal.style.display === 'block' && (e.ctrlKey || e.metaKey) && ['s','p','S','P'].includes(e.key)) {
+            if (e.key === 'Escape') closeModal();
+            const m = document.getElementById('certModal');
+            if (m.style.display === 'block' && (e.ctrlKey || e.metaKey) && ['s','p','S','P'].includes(e.key))
                 e.preventDefault();
-            }
         });
-
-        document.querySelectorAll('.cert-card').forEach(card => {
-            card.addEventListener('contextmenu', e => e.preventDefault());
-        });
+        document.querySelectorAll('.cert-card').forEach(c => c.addEventListener('contextmenu', e => e.preventDefault()));
     </script>
 </body>
 </html>
